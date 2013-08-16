@@ -1,0 +1,6 @@
+uk.ac.soton.mib104.t2.activities.json.ui.menu.AddJSONPathAction
+uk.ac.soton.mib104.t2.activities.json.ui.menu.AddJSONPathMenuAction
+uk.ac.soton.mib104.t2.activities.json.ui.menu.AddJSONTemplateAction
+uk.ac.soton.mib104.t2.activities.json.ui.menu.AddJSONTemplateMenuAction
+uk.ac.soton.mib104.t2.activities.json.ui.menu.JSONPathConfigureMenuAction
+uk.ac.soton.mib104.t2.activities.json.ui.menu.JSONTemplateConfigureMenuAction

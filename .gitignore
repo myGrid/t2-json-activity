@@ -1,6 +1,15 @@
 *.class
+target/
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# Eclipse #
+*.classpath
+*.project
+*.prefs
+*.properties
+
+*.DS_Store
