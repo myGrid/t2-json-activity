@@ -1,3 +1,9 @@
+/**
+ * Copyright (C) 2013, University of Manchester and University of Southampton
+ *
+ * Licensed under the GNU Lesser General Public License v2.1
+ * See the "LICENSE" file that is distributed with the source code for license terms. 
+ */
 package com.famfamfam;
 
 import java.util.HashMap;
