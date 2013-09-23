@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>JSON Taverna project</name>
-
+ 
 	<properties>
 		<!--  Update according to latest Taverna version in 
 		www.mygrid.org.uk/dev/wiki/display/developer/Maven+module+version+numbers
