@@ -35,6 +35,22 @@
 			<artifactId>activity-tools</artifactId>
 			<version>${t2.ui.impl.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.taverna.t2.ui-components</groupId>
+			<artifactId>workflow-view</artifactId>		
+			<version>${t2.ui.components.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.taverna.t2.ui-components</groupId>
+			<artifactId>graph-view</artifactId>		
+			<version>1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.taverna.t2.ui-api</groupId>
+			<artifactId>renderers-api</artifactId>
+			<version>${t2.ui.api.version}</version>
+		</dependency>
+
 
 		<!-- Workbench runtime for testing from IDE, remove if not using TavernaWorkbenchWithExamplePlugin.main() -->
 		<dependency>
