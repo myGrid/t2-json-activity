@@ -329,7 +329,7 @@ public abstract class JSONTreeNode<K, V> implements TreeNode {
 	 * @return  a new tree node
 	 */
 	public static final TreeNode createTreeNode(final Object jsonValue) {
-		return createTreeNode(null, null, jsonValue);
+		return createTreeNode(null, (Void) null, jsonValue);
 	}
 	
 	/**
