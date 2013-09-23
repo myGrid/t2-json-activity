@@ -73,7 +73,7 @@ public abstract class JSONTreeNode<K, V> implements TreeNode {
 						childValue = null;
 					}
 					
-					result.add(createTreeNode(this, (K) Integer.valueOf(index), childValue));
+					result.add(createTreeNode(this, index, childValue));
 				}
 
 				return new Vector<TreeNode>(result);
