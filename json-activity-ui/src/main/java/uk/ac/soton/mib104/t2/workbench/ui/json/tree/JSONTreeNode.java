@@ -6,11 +6,9 @@
  */
 package uk.ac.soton.mib104.t2.workbench.ui.json.tree;
 
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Vector;
 
 import javax.swing.tree.TreeNode;
@@ -33,129 +31,6 @@ import com.jayway.jsonpath.spi.JsonProvider;
  * @param <V>  the type of JSON values
  */
 public abstract class JSONTreeNode<K, V> implements TreeNode {
-
-	/**
-	 * An object that can be used as a node in a {@link JSONTree}, where said node corresponds to a JSON array (or list.)
-	 * 
-	 * @author Mark Borkum
-	 * @version 0.0.1-SNAPSHOT
-	 *
-	 * @param <K>  the type of JSON keys
-	 */
-	private static final class JSONTreeNode_List<K> extends JSONTreeNode<K, List<?>> {
-
-		/**
-		 * Default constructor.
-		 * 
-		 * @param parent  the parent tree node
-		 * @param key  the JSON key
-		 * @param value  the list of JSON values
-		 */
-		public JSONTreeNode_List(final TreeNode parent, final K key, final List<?> value) {
-			super(parent, key, value);
-		}
-
-		@Override
-		protected Vector<TreeNode> createChildren() {
-			final List<?> value = this.getValue();
-			
-			if ((value == null) || value.isEmpty()) {
-				return null;
-			} else {
-				final List<TreeNode> result = new ArrayList<TreeNode>(value.size());
-				
-				for (int index = 0, length = value.size(); index < length; index++) {
-					Object childValue;
-					
-					try {
-						childValue = value.get(index);
-					} catch (final ArrayIndexOutOfBoundsException ex) {
-						childValue = null;
-					}
-					
-					result.add(createTreeNode(this, index, childValue));
-				}
-
-				return new Vector<TreeNode>(result);
-			}
-		}
-		
-	}
-	
-	/**
-	 * An object that can be used as a node in a {@link JSONTree}, where said node corresponds to a JSON object (or map.)
-	 * 
-	 * @author Mark Borkum
-	 * @version 0.0.1-SNAPSHOT
-	 *
-	 * @param <K>  the type of JSON keys
-	 */
-	private static final class JSONTreeNode_Map<K> extends JSONTreeNode<K, Map<?, ?>> {
-
-		/**
-		 * Default constructor.
-		 * 
-		 * @param parent  the parent tree node
-		 * @param key  the JSON key
-		 * @param value  the map of JSON values
-		 */
-		public JSONTreeNode_Map(final TreeNode parent, final K key, final Map<?, ?> value) {
-			super(parent, key, value);
-		}
-
-		@Override
-		protected Vector<TreeNode> createChildren() {
-			final Map<?, ?> value = this.getValue();
-			
-			if ((value == null) || value.isEmpty()) {
-				return null;
-			} else {
-				final Map<String, Object> map = new TreeMap<String, Object>();
-				
-				for (final Map.Entry<?, ?> entry : value.entrySet()) {
-					map.put(entry.getKey().toString(), entry.getValue());
-				}
-				
-				final List<TreeNode> result = new ArrayList<TreeNode>(map.size());
-				
-				for (final Map.Entry<String, Object> entry : map.entrySet()) {
-					result.add(createTreeNode(this, entry.getKey(), entry.getValue()));
-				}
-				
-				return new Vector<TreeNode>(result);
-			}
-		}
-		
-	}
-	
-	/**
-	 * An object that can be used as a node in a {@link JSONTree}, where said node corresponds to any JSON value (or object.) 
-	 * 
-	 * @author Mark Borkum
-	 * @version 0.0.1-SNAPSHOT
-	 *
-	 * @param <K>  the type of JSON keys
-	 * @param <V>  the type of JSON values
-	 */
-	private static final class JSONTreeNode_Object<K, V> extends JSONTreeNode<K, V> {
-		
-		/**
-		 * Default constructor.
-		 * 
-		 * @param parent  the parent tree node
-		 * @param key  the JSON key
-		 * @param value  the JSON value
-		 */
-		public JSONTreeNode_Object(final TreeNode parent, final K key, final V value) {
-			super(parent, key, value);
-		}
-
-		@Override
-		protected Vector<TreeNode> createChildren() {
-			return null;
-		}
-		
-	}
 	
 	private static final String arrayIndexTokenFormat1 = "[%d]";
 
@@ -329,7 +204,7 @@ public abstract class JSONTreeNode<K, V> implements TreeNode {
 	 * @return  a new tree node
 	 */
 	public static final TreeNode createTreeNode(final Object jsonValue) {
-		return createTreeNode(null, null, jsonValue);
+		return createTreeNode(null, (Void) null, jsonValue);
 	}
 	
 	/**
@@ -342,7 +217,7 @@ public abstract class JSONTreeNode<K, V> implements TreeNode {
 	 * @param value  the JSON value
 	 * @return  a new tree node
 	 */
-	private static final <K, V> TreeNode createTreeNode(final TreeNode parent, final K key, final V value) {
+	protected static final <K, V> TreeNode createTreeNode(final TreeNode parent, final K key, final V value) {
 		if (value == null) {
 			return new JSONTreeNode_Object<K, V>(parent, key, value);
 		} else if (value instanceof List) {
